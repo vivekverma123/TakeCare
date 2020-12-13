@@ -5,6 +5,7 @@
     android:layout_width="225dp"
     android:layout_height="40dp"
     android:gravity="center|left"
+    android:textColor="?android:attr/textColorPrimary"
     android:textSize="18sp">
 
 

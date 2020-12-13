@@ -1,5 +1,6 @@
 package com.example.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,20 +37,43 @@ public class DatabaseHandler extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    public Person gePerson()
+    public Person getPerson()
     {
-        Person p1 = new Person();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(false,TABLE_PERSON,new String[]{"KEY1","NAME","DOB","SEX","HEIGHT","WEIGHT"},"KEY1" + "=?",new String[]{"1"},null,null,null,null,null);
+
         if(cursor==null)
         {
-            p1.setName("NotSet");
-            p1.setDob("NotSet");
-            p1.setKey(1);
-            p1.setHeight(0.0);
-            p1.setSex("Male");
-            p1.setWeight(0.0);
+            return null;
         }
+        else if(cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            Person person = new Person(Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),cursor.getString(3),Double.parseDouble(cursor.getString(4)),Double.parseDouble(cursor.getString(5)));
+            return person;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+    public void updatePerson(Person person)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("KEY1",person.getKey());
+        values.put("NAME",person.getName());
+        values.put("DOB",person.getDob());
+        values.put("SEX",person.getSex());
+        values.put("HEIGHT",person.getHeight());
+        values.put("WEIGHT",person.getWeight());
+        if(db.update(TABLE_PERSON,values,"KEY1=?",new String[]{"1"})==0)
+        {
+            db.insert(TABLE_PERSON,null,values);
+        }
+        db.close();
     }
 
 }

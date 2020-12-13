@@ -12,6 +12,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.database.DatabaseHandler;
+import com.example.model.Person;
+
 public class MainActivity extends AppCompatActivity
 {
     private Context context;
