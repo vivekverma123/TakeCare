@@ -1,4 +1,4 @@
-package com.example.takecare;
+package com.example.takecare.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.database.DatabaseHandler;
 import com.example.model.Person;
+import com.example.takecare.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

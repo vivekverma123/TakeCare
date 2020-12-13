@@ -1,0 +1,73 @@
+package com.example.model;
+
+import java.net.URL;
+
+public class Appointment
+{
+    private int appointmentKey;
+    private String doctor,date,time;
+    private URL url;
+
+    public Appointment()
+    {
+    }
+
+    public Appointment(int appointmentKey, String doctor, String date, String time, URL url)
+    {
+        this.appointmentKey = appointmentKey;
+        this.doctor = doctor;
+        this.date = date;
+        this.time = time;
+        this.url = url;
+    }
+
+    public int getAppointmentKey()
+    {
+        return appointmentKey;
+    }
+
+    public void setAppointmentKey(int appointmentKey)
+    {
+        this.appointmentKey = appointmentKey;
+    }
+
+    public String getDoctor()
+    {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor)
+    {
+        this.doctor = doctor;
+    }
+
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+    public String getTime()
+    {
+        return time;
+    }
+
+    public void setTime(String time)
+    {
+        this.time = time;
+    }
+
+    public URL getUrl()
+    {
+        return url;
+    }
+
+    public void setUrl(URL url)
+    {
+        this.url = url;
+    }
+}
