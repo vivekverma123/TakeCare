@@ -26,14 +26,14 @@ import java.util.Calendar;
 
 public class Profile extends AppCompatActivity
 {
-    EditText e1,e3,e4;
-    TextView e2;
-    Spinner s1;
-    Button b1;
-    Context context;
-    final Calendar cal = Calendar.getInstance();
-    ArrayList<String> arrayList;
-    DatabaseHandler db;
+    private EditText e1,e3,e4;
+    private TextView e2;
+    private Spinner s1;
+    private Button b1;
+    private Context context;
+    private final Calendar cal = Calendar.getInstance();
+    private ArrayList<String> arrayList;
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -144,5 +144,7 @@ public class Profile extends AppCompatActivity
 
         datePickerDialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
         datePickerDialog.show();
+
+
     }
 }

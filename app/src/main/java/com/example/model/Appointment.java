@@ -1,9 +1,10 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Appointment
+public class Appointment implements Serializable
 {
     private int appointmentKey;
     private String doctor,date,time;

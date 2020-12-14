@@ -40,9 +40,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         db.execSQL(CREATE_PERSON);
         db.execSQL(CREATE_APPOINTMENT);
-        //db.execSQL(CREATE_COURSE);
-        //db.execSQL(CREATE_MEDICINE);
-        //db.execSQL(CREATE_REPORT);
+        db.execSQL(CREATE_COURSE);
+        db.execSQL(CREATE_MEDICINE);
+        db.execSQL(CREATE_REPORT);
     }
 
     @Override

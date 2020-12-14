@@ -2,6 +2,7 @@ package com.example.takecare.fragments.appointments;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.database.DatabaseHandler;
 import com.example.model.Appointment;
 import com.example.takecare.R;
+import com.example.takecare.activities.AppointmentDetail;
 import com.example.takecare.useradapters.AppointmentsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,6 +34,7 @@ public class Appointments extends Fragment
     private RecyclerView recyclerView;
     private ArrayList<Appointment> arrayList;
     private DatabaseHandler db;
+    private View view;
 
     public static Appointments newInstance()
     {
@@ -42,7 +46,7 @@ public class Appointments extends Fragment
                              @Nullable Bundle savedInstanceState)
     {
 
-        View view =  inflater.inflate(R.layout.appointments_fragment, container, false);
+        view =  inflater.inflate(R.layout.appointments_fragment, container, false);
         db = new DatabaseHandler(getActivity());
         arrayList = new ArrayList<>();
         try
@@ -54,6 +58,8 @@ public class Appointments extends Fragment
         }
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
         recyclerView = view.findViewById(R.id.recyclerView);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         AppointmentsAdapter appointmentsAdapter = new AppointmentsAdapter(arrayList,getActivity());
@@ -85,6 +91,9 @@ public class Appointments extends Fragment
                 AppointmentsAdapter appointmentsAdapter = new AppointmentsAdapter(arrayList,getActivity());
                 recyclerView.setAdapter(appointmentsAdapter);
             }
+
+
+
         });
         return view;
     }
@@ -95,6 +104,27 @@ public class Appointments extends Fragment
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(AppointmentsViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    public void onResume()
+    {
+        super.onResume();
+        try
+        {
+            arrayList = db.getAllAppointments();
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
+        recyclerView = view.findViewById(R.id.recyclerView);
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        AppointmentsAdapter appointmentsAdapter = new AppointmentsAdapter(arrayList,getActivity());
+        recyclerView.setAdapter(appointmentsAdapter);
+        appointmentsAdapter.notifyDataSetChanged();
     }
 
 }
