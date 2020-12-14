@@ -5,7 +5,7 @@ import java.net.URL;
 public class Reports
 {
     private int appointmentKey,reportKey;
-    private String referredBy,type,remarks;
+    private String type,remarks;
     private URL url;
 
     public Reports()
@@ -16,7 +16,6 @@ public class Reports
     {
         this.appointmentKey = appointmentKey;
         this.reportKey = reportKey;
-        this.referredBy = referredBy;
         this.type = type;
         this.remarks = remarks;
         this.url = url;
@@ -40,16 +39,6 @@ public class Reports
     public void setReportKey(int reportKey)
     {
         this.reportKey = reportKey;
-    }
-
-    public String getReferredBy()
-    {
-        return referredBy;
-    }
-
-    public void setReferredBy(String referredBy)
-    {
-        this.referredBy = referredBy;
     }
 
     public String getType()

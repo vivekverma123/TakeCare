@@ -3,17 +3,16 @@ package com.example.model;
 public class Course
 {
     private int appointmentKey,courseKey;
-    private String prescribedBy,from,to,instructions;
+    private String from,to,instructions;
 
     public Course()
     {
     }
 
-    public Course(int appointmentKey, int courseKey, String prescribedBy, String from, String to, String instructions)
+    public Course(int appointmentKey, int courseKey, String from, String to, String instructions)
     {
         this.appointmentKey = appointmentKey;
         this.courseKey = courseKey;
-        this.prescribedBy = prescribedBy;
         this.from = from;
         this.to = to;
         this.instructions = instructions;
@@ -37,16 +36,6 @@ public class Course
     public void setCourseKey(int courseKey)
     {
         this.courseKey = courseKey;
-    }
-
-    public String getPrescribedBy()
-    {
-        return prescribedBy;
-    }
-
-    public void setPrescribedBy(String prescribedBy)
-    {
-        this.prescribedBy = prescribedBy;
     }
 
     public String getFrom()

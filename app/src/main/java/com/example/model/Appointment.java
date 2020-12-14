@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Appointment
@@ -8,8 +9,13 @@ public class Appointment
     private String doctor,date,time;
     private URL url;
 
-    public Appointment()
+    public Appointment() throws MalformedURLException
     {
+        appointmentKey = 1;
+        doctor = "Anonymous";
+        date = "Not decided";
+        time = "Not decided";
+        url = new URL("https://i.kym-cdn.com/entries/icons/original/000/032/279/Screen_Shot_2019-12-30_at_11.26.24_AM.png");
     }
 
     public Appointment(int appointmentKey, String doctor, String date, String time, URL url)
