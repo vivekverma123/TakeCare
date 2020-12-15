@@ -2,7 +2,6 @@ package com.example.takecare.fragments.appointments;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.database.DatabaseHandler;
 import com.example.model.Appointment;
 import com.example.takecare.R;
-import com.example.takecare.activities.AppointmentDetail;
 import com.example.takecare.useradapters.AppointmentsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

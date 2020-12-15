@@ -9,3 +9,39 @@
 "CREATE TABLE " + TABLE_REPORTS + "REPORT_KEY INTEGER PRIMARY KEY AUTOINCREMENT, TYPE TEXT NOT NULL, REMARKS TEXT NOT NULL, URL TEXT NOT NULL, CONSTRAINT FK_APPOINTMENT_KEY FOREIGN KEY (APPOINTMENT_KEY) REFERENCES Appointments(APPOINTMENT_KEY))
 
  
+values.put("KEY1",);
+values.put("NAME",);
+values.put("DOB",);
+values.put("SEX",);
+values.put("HEIGHT",);
+values.put("WEIGHT",);
+
+values.put("COURSE_KEY",);
+values.put("FROM1",);
+values.put("TO1",);
+values.put("INSTRUCTIONS",);
+values.put("FK_APPOINTMENT_KEY",);
+
+values.put("MEDICINE_KEY",);
+values.put("DOSES",);
+values.put("DOSES_TAKEN",);
+values.put("NAME",);
+values.put("TIME1",);
+values.put("TIME2",);
+values.put("TIME3",);
+values.put("TIME4",);
+values.put("TIME5",);
+values.put("T1",);
+values.put("T2",);
+values.put("T3",);
+values.put("T4",);
+values.put("T5",);
+values.put("FK_COURSE_KEY",);
+ 
+values.put("TYPE",);
+values.put("REMARKS",);
+values.put("URL",);
+values.put("FK_APPOINTMENT_KEY",);
+
+
+ 

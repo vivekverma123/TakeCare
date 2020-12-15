@@ -2,16 +2,17 @@ package com.example.model;
 
 public class Medicine
 {
-    private int medKey,courseKey,doses,doses_taken;
+    private int appKey,medKey,courseKey,doses,doses_taken;
     private String Name,time1,time2,time3,time4,time5,instructions;
-    private boolean t1,t2,t3,t4,t5;
+    private int t1,t2,t3,t4,t5;
 
     public Medicine()
     {
     }
 
-    public Medicine(int medKey, int courseKey, int doses, int doses_taken, String name, String time1, String time2, String time3, String time4, String time5, String instructions, boolean t1, boolean t2, boolean t3, boolean t4, boolean t5)
+    public Medicine(int appKey, int medKey, int courseKey, int doses, int doses_taken, String name, String time1, String time2, String time3, String time4, String time5, String instructions, int t1, int t2, int t3, int t4, int t5)
     {
+        this.appKey = appKey;
         this.medKey = medKey;
         this.courseKey = courseKey;
         this.doses = doses;
@@ -30,64 +31,14 @@ public class Medicine
         this.t5 = t5;
     }
 
-    public String getTime4()
+    public int getAppKey()
     {
-        return time4;
+        return appKey;
     }
 
-    public void setTime4(String time4)
+    public void setAppKey(int appKey)
     {
-        this.time4 = time4;
-    }
-
-    public String getTime5()
-    {
-        return time5;
-    }
-
-    public void setTime5(String time5)
-    {
-        this.time5 = time5;
-    }
-
-    public boolean isT4()
-    {
-        return t4;
-    }
-
-    public void setT4(boolean t4)
-    {
-        this.t4 = t4;
-    }
-
-    public boolean isT5()
-    {
-        return t5;
-    }
-
-    public void setT5(boolean t5)
-    {
-        this.t5 = t5;
-    }
-
-    public int getDoses()
-    {
-        return doses;
-    }
-
-    public void setDoses(int doses)
-    {
-        this.doses = doses;
-    }
-
-    public int getDoses_taken()
-    {
-        return doses_taken;
-    }
-
-    public void setDoses_taken(int doses_taken)
-    {
-        this.doses_taken = doses_taken;
+        this.appKey = appKey;
     }
 
     public int getMedKey()
@@ -108,6 +59,26 @@ public class Medicine
     public void setCourseKey(int courseKey)
     {
         this.courseKey = courseKey;
+    }
+
+    public int getDoses()
+    {
+        return doses;
+    }
+
+    public void setDoses(int doses)
+    {
+        this.doses = doses;
+    }
+
+    public int getDoses_taken()
+    {
+        return doses_taken;
+    }
+
+    public void setDoses_taken(int doses_taken)
+    {
+        this.doses_taken = doses_taken;
     }
 
     public String getName()
@@ -150,6 +121,26 @@ public class Medicine
         this.time3 = time3;
     }
 
+    public String getTime4()
+    {
+        return time4;
+    }
+
+    public void setTime4(String time4)
+    {
+        this.time4 = time4;
+    }
+
+    public String getTime5()
+    {
+        return time5;
+    }
+
+    public void setTime5(String time5)
+    {
+        this.time5 = time5;
+    }
+
     public String getInstructions()
     {
         return instructions;
@@ -160,33 +151,53 @@ public class Medicine
         this.instructions = instructions;
     }
 
-    public boolean isT1()
+    public int getT1()
     {
         return t1;
     }
 
-    public void setT1(boolean t1)
+    public void setT1(int t1)
     {
         this.t1 = t1;
     }
 
-    public boolean isT2()
+    public int getT2()
     {
         return t2;
     }
 
-    public void setT2(boolean t2)
+    public void setT2(int t2)
     {
         this.t2 = t2;
     }
 
-    public boolean isT3()
+    public int getT3()
     {
         return t3;
     }
 
-    public void setT3(boolean t3)
+    public void setT3(int t3)
     {
         this.t3 = t3;
+    }
+
+    public int getT4()
+    {
+        return t4;
+    }
+
+    public void setT4(int t4)
+    {
+        this.t4 = t4;
+    }
+
+    public int getT5()
+    {
+        return t5;
+    }
+
+    public void setT5(int t5)
+    {
+        this.t5 = t5;
     }
 }

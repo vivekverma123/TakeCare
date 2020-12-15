@@ -2,17 +2,17 @@ package com.example.model;
 
 import java.net.URL;
 
-public class Reports
+public class Report
 {
     private int appointmentKey,reportKey;
     private String type,remarks;
     private URL url;
 
-    public Reports()
+    public Report()
     {
     }
 
-    public Reports(int appointmentKey, int reportKey, String referredBy, String type, String remarks, URL url)
+    public Report(int appointmentKey, int reportKey, String type, String remarks, URL url)
     {
         this.appointmentKey = appointmentKey;
         this.reportKey = reportKey;

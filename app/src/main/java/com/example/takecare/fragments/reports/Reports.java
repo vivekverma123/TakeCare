@@ -16,7 +16,6 @@ import com.example.takecare.R;
 
 public class Reports extends Fragment
 {
-
     private ReportsViewModel mViewModel;
 
     public static Reports newInstance()
