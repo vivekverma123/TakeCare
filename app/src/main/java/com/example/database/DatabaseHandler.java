@@ -292,11 +292,28 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return arrayList;
     }
 
+    public ArrayList <Report> getAllReports(int id) throws MalformedURLException
+    {
+        ArrayList <Report> arrayList = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Reports WHERE FK_APPOINTMENT_KEY = " + String.valueOf(id), null);
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                Report report = new Report(Integer.parseInt(cursor.getString(4)),Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),new URL(cursor.getString(3)));
+                arrayList.add(report);
+            } while (cursor.moveToNext());
+        }
+        Collections.reverse(arrayList);
+        return arrayList;
+    }
+
     public ArrayList <Course> getAllCourses() throws MalformedURLException
     {
         ArrayList <Course> arrayList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Course", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Courses", null);
         if (cursor.moveToFirst())
         {
             do
@@ -308,4 +325,22 @@ public class DatabaseHandler extends SQLiteOpenHelper
         Collections.reverse(arrayList);
         return arrayList;
     }
+
+    public ArrayList <Course> getAllCourses(int id) throws MalformedURLException
+    {
+        ArrayList <Course> arrayList = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Courses WHERE FK_APPOINTMENT_KEY = " + String.valueOf(id), null);
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                Course course = new Course(Integer.parseInt(cursor.getString(4)),Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),cursor.getString(3));
+                arrayList.add(course);
+            } while (cursor.moveToNext());
+        }
+        Collections.reverse(arrayList);
+        return arrayList;
+    }
+
 }

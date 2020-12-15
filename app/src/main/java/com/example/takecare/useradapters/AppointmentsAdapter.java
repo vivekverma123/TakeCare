@@ -54,7 +54,8 @@ public class AppointmentsAdapter extends RecyclerView.Adapter <AppointmentsAdapt
         return arrayList.size();
     }
 
-    public class MyAdapter extends RecyclerView.ViewHolder {
+    public class MyAdapter extends RecyclerView.ViewHolder
+    {
 
         private TextView t1,t2,t3,t4,t5;
         private Button b1,b2;

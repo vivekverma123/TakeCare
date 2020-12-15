@@ -1,12 +1,19 @@
 package com.example.model;
 
-public class Course
+import java.io.Serializable;
+import java.nio.file.SecureDirectoryStream;
+
+public class Course implements Serializable
 {
     private int appointmentKey,courseKey;
     private String from,to,instructions;
 
     public Course()
     {
+        appointmentKey = courseKey = -1;
+        from = "Not Set";
+        to = "Not Set";
+        instructions = "No Instructions Available";
     }
 
     public Course(int appointmentKey, int courseKey, String from, String to, String instructions)
@@ -67,4 +74,10 @@ public class Course
     {
         this.instructions = instructions;
     }
+
+    public String toString()
+    {
+        return "Course ID: " + courseKey + "   From " + from + " to " + to;
+    }
+
 }

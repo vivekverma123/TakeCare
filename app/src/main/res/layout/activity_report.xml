@@ -10,7 +10,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_text"
         android:text="Report Detail"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
@@ -272,5 +271,19 @@
         app:layout_constraintStart_toStartOf="@+id/report_url_head"
         app:layout_constraintTop_toBottomOf="@+id/report_url_head"
         app:layout_constraintVertical_bias="0.299" />
+
+    <Button
+        android:id="@+id/view_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Report"
+        android:textAllCaps="false"
+        app:backgroundTint="#D50000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sav_repo"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toEndOf="@+id/del_repo"
+        app:layout_constraintTop_toBottomOf="@+id/repo_url"
+        app:layout_constraintVertical_bias="0.302" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

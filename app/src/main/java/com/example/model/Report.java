@@ -76,4 +76,9 @@ public class Report implements Serializable
     {
         this.url = url;
     }
+
+    public String toString()
+    {
+        return "Report ID: " + reportKey + "\t\t\t" + type;
+    }
 }

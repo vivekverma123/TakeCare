@@ -69,8 +69,8 @@ public class ReportsAdapter extends RecyclerView.Adapter <ReportsAdapter.MyAdapt
         return arrayList.size();
     }
 
-    public class MyAdapter extends RecyclerView.ViewHolder {
-
+    public class MyAdapter extends RecyclerView.ViewHolder
+    {
         private TextView t1,t2,t3,t4,t5;
         private Button b1,b2;
 
@@ -84,7 +84,6 @@ public class ReportsAdapter extends RecyclerView.Adapter <ReportsAdapter.MyAdapt
             t5 = itemView.findViewById(R.id.spare);
             b1 = itemView.findViewById(R.id.view1);
             b2 = itemView.findViewById(R.id.view2);
-
         }
 
         public void SetData(Report report) throws MalformedURLException

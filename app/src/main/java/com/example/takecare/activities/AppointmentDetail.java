@@ -2,29 +2,42 @@ package com.example.takecare.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.database.DatabaseHandler;
 import com.example.model.Appointment;
+import com.example.model.Course;
 import com.example.model.Report;
 import com.example.takecare.R;
+import com.google.android.material.tabs.TabLayout;
 
+import java.net.Inet4Address;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AppointmentDetail extends AppCompatActivity
 {
@@ -35,6 +48,9 @@ public class AppointmentDetail extends AppCompatActivity
     private Context context;
     private DatabaseHandler db;
     private final Calendar cal = Calendar.getInstance();
+    private Date date;
+    private TabLayout tabLayout;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -103,6 +119,15 @@ public class AppointmentDetail extends AppCompatActivity
                 appointment.setDoctor(e2.getText().toString());
                 appointment.setDate(e3.getText().toString());
                 appointment.setTime(e4.getText().toString());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                String temp = appointment.getDate() + " " + appointment.getTime();
+                try
+                {
+                    Date d1 = formatter.parse(temp);
+                } catch (ParseException e)
+                {
+                    e.printStackTrace();
+                }
                 try
                 {
                     appointment.setUrl(new URL(e5.getText().toString()));
@@ -126,6 +151,19 @@ public class AppointmentDetail extends AppCompatActivity
             }
         });
 
+        b3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Course course = new Course();
+                course.setAppointmentKey(appointment.getAppointmentKey());
+                Intent intent = new Intent(context,CourseDetail.class);
+                intent.putExtra("Object",course);
+                startActivity(intent);
+            }
+        });
+
         b4.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -145,6 +183,10 @@ public class AppointmentDetail extends AppCompatActivity
                 }
             }
         });
+
+        listView = findViewById(R.id.listView);
+        tabLayout = findViewById(R.id.tabLayout2);
+
 
     }
 
@@ -177,6 +219,140 @@ public class AppointmentDetail extends AppCompatActivity
 
                 },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),true);
         timePickerDialog.show();
+    }
+
+    public void onResume()
+    {
+        tabLayout.getTabAt(0).select();
+        try
+        {
+            ArrayList <Course> arrayList = db.getAllCourses(appointment.getAppointmentKey());
+            ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,arrayList);
+            listView.setAdapter(arrayAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    Intent intent = new Intent(context,CourseDetail.class);
+                    intent.putExtra("Object",arrayList.get(position));
+                    startActivity(intent);
+                }
+            });
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+
+        super.onResume();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
+        {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab)
+            {
+                switch(tab.getPosition())
+                {
+                    case 1:
+                        try
+                        {
+                            ArrayList <Report> arrayList = db.getAllReports(appointment.getAppointmentKey());
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,arrayList);
+                            listView.setAdapter(arrayAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                {
+                                    Intent intent = new Intent(context,ReportDetail.class);
+                                    intent.putExtra("Object",arrayList.get(position));
+                                    startActivity(intent);
+                                }
+                            });
+                        } catch (MalformedURLException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case 0:
+                        try
+                        {
+                            ArrayList <Course> arrayList = db.getAllCourses(appointment.getAppointmentKey());
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,arrayList);
+                            listView.setAdapter(arrayAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                {
+                                    Intent intent = new Intent(context,CourseDetail.class);
+                                    intent.putExtra("Object",arrayList.get(position));
+                                    startActivity(intent);
+                                }
+                            });
+                        } catch (MalformedURLException e)
+                        {
+                            e.printStackTrace();
+                        }
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab)
+            {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab)
+            {
+                switch(tab.getPosition())
+                {
+                    case 1:
+                        try
+                        {
+                            ArrayList <Report> arrayList = db.getAllReports(appointment.getAppointmentKey());
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,arrayList);
+                            listView.setAdapter(arrayAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                {
+                                    Intent intent = new Intent(context,ReportDetail.class);
+                                    intent.putExtra("Object",arrayList.get(position));
+                                    startActivity(intent);
+                                }
+                            });
+                        } catch (MalformedURLException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case 0:
+                        try
+                        {
+                            ArrayList <Course> arrayList = db.getAllCourses(appointment.getAppointmentKey());
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.support_simple_spinner_dropdown_item,arrayList);
+                            listView.setAdapter(arrayAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                {
+                                    Intent intent = new Intent(context,CourseDetail.class);
+                                    intent.putExtra("Object",arrayList.get(position));
+                                    startActivity(intent);
+                                }
+                            });
+                        } catch (MalformedURLException e)
+                        {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        });
     }
 
 }

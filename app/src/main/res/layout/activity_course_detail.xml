@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AppointmentDetail">
-
+    tools:context=".activities.CourseDetail">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Appointment"
+        android:text="Course Detail"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -23,14 +22,14 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/pres_id_head1"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:gravity="center|right"
         android:paddingRight="5dp"
         android:shadowColor="#000000"
-        android:text="ID: "
+        android:text="Pres ID: "
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         android:textStyle="bold|italic"
@@ -39,86 +38,105 @@
         app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.148" />
 
     <TextView
-        android:id="@+id/with"
+        android:id="@+id/course_id_head"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:gravity="center|right"
         android:paddingRight="5dp"
         android:shadowColor="#000000"
-        android:text="With: "
+        android:text="Course ID: "
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/id"
+        app:layout_constraintEnd_toEndOf="@+id/pres_id_head1"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/id"
-        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintStart_toStartOf="@+id/pres_id_head1"
+        app:layout_constraintTop_toBottomOf="@+id/pres_id_head1"
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/on"
+        android:id="@+id/pres_by_head"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:gravity="center|right"
         android:paddingRight="5dp"
         android:shadowColor="#000000"
-        android:text="On: "
+        android:text="Prescribed By: "
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/with"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/with"
-        app:layout_constraintTop_toBottomOf="@+id/with"
+        app:layout_constraintEnd_toEndOf="@+id/course_id_head"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/course_id_head"
+        app:layout_constraintTop_toBottomOf="@+id/course_id_head"
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/at"
+        android:id="@+id/from_head"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:gravity="center|right"
         android:paddingRight="5dp"
         android:shadowColor="#000000"
-        android:text="At: "
+        android:text="From: "
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/on"
+        app:layout_constraintEnd_toEndOf="@+id/pres_by_head"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/on"
-        app:layout_constraintTop_toBottomOf="@+id/on"
+        app:layout_constraintStart_toStartOf="@+id/pres_by_head"
+        app:layout_constraintTop_toBottomOf="@+id/pres_by_head"
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/pres_url"
+        android:id="@+id/to_head"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:gravity="center|right"
         android:paddingRight="5dp"
         android:shadowColor="#000000"
-        android:text="Presc. URL: "
+        android:text="To: "
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/at"
+        app:layout_constraintEnd_toEndOf="@+id/from_head"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/at"
-        app:layout_constraintTop_toBottomOf="@+id/at"
+        app:layout_constraintStart_toStartOf="@+id/from_head"
+        app:layout_constraintTop_toBottomOf="@+id/from_head"
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/app_id"
+        android:id="@+id/ins_head"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/border_text"
+        android:gravity="center|right"
+        android:paddingRight="5dp"
+        android:shadowColor="#000000"
+        android:text="Instructions: "
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/to_head"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/to_head"
+        app:layout_constraintTop_toBottomOf="@+id/to_head"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <TextView
+        android:id="@+id/pres_id1"
         android:layout_width="210dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
@@ -128,34 +146,51 @@
         android:shadowColor="#000000"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/id"
+        app:layout_constraintBottom_toBottomOf="@+id/pres_id_head1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.202"
-        app:layout_constraintStart_toEndOf="@+id/id"
-        app:layout_constraintTop_toTopOf="@+id/id"
+        app:layout_constraintStart_toEndOf="@+id/pres_id_head1"
+        app:layout_constraintTop_toTopOf="@+id/pres_id_head1"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/with_doctor"
+    <TextView
+        android:id="@+id/course_id"
         android:layout_width="210dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
         android:ems="10"
         android:gravity="center|left"
-        android:inputType="textPersonName"
         android:paddingLeft="5dp"
         android:shadowColor="#000000"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/with"
+        app:layout_constraintBottom_toBottomOf="@+id/course_id_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/with"
-        app:layout_constraintTop_toTopOf="@+id/with"
+        app:layout_constraintStart_toEndOf="@+id/course_id_head"
+        app:layout_constraintTop_toTopOf="@+id/course_id_head"
         app:layout_constraintVertical_bias="0.121" />
 
     <TextView
-        android:id="@+id/on_date"
+        android:id="@+id/pres_by"
+        android:layout_width="210dp"
+        android:layout_height="30dp"
+        android:background="@drawable/border_text"
+        android:ems="10"
+        android:gravity="center|left"
+        android:paddingLeft="5dp"
+        android:shadowColor="#000000"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pres_by_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toEndOf="@+id/pres_by_head"
+        app:layout_constraintTop_toBottomOf="@+id/course_id_head"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/from"
         android:layout_width="210dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
@@ -166,15 +201,15 @@
         android:shadowColor="#000000"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/on"
+        app:layout_constraintBottom_toBottomOf="@+id/from_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/on"
-        app:layout_constraintTop_toTopOf="@+id/on"
+        app:layout_constraintStart_toEndOf="@+id/from_head"
+        app:layout_constraintTop_toTopOf="@+id/from_head"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/at_time"
+        android:id="@+id/to"
         android:layout_width="210dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
@@ -185,15 +220,15 @@
         android:shadowColor="#000000"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/at"
+        app:layout_constraintBottom_toBottomOf="@+id/to_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/at"
-        app:layout_constraintTop_toTopOf="@+id/at"
+        app:layout_constraintStart_toEndOf="@+id/to_head"
+        app:layout_constraintTop_toTopOf="@+id/to_head"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/pres_url1"
+        android:id="@+id/instructions"
         android:layout_width="210dp"
         android:layout_height="30dp"
         android:background="@drawable/border_text"
@@ -204,28 +239,28 @@
         android:shadowColor="#000000"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pres_url"
+        app:layout_constraintBottom_toBottomOf="@+id/ins_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/pres_url"
-        app:layout_constraintTop_toTopOf="@+id/pres_url"
+        app:layout_constraintStart_toEndOf="@+id/ins_head"
+        app:layout_constraintTop_toTopOf="@+id/ins_head"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/sav_appoint"
+        android:id="@+id/sav_course"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@drawable/check"
         app:backgroundTint="#D50000"
-        app:layout_constraintBottom_toBottomOf="@+id/del_appoint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.832"
-        app:layout_constraintStart_toEndOf="@+id/del_appoint"
-        app:layout_constraintTop_toTopOf="@+id/del_appoint"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/instructions"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/instructions"
+        app:layout_constraintTop_toBottomOf="@+id/instructions"
+        app:layout_constraintVertical_bias="0.299" />
 
     <Button
-        android:id="@+id/del_appoint"
+        android:id="@+id/del_course"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@drawable/cancel"
@@ -233,84 +268,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pres_url"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/pres_url"
-        app:layout_constraintTop_toBottomOf="@+id/pres_url1"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintStart_toStartOf="@+id/ins_head"
+        app:layout_constraintTop_toBottomOf="@+id/ins_head"
+        app:layout_constraintVertical_bias="0.299" />
 
     <Button
-        android:id="@+id/add_course"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_text"
-        android:text="Add Course"
-        android:textAllCaps="false"
+        android:text="Add Medicine"
         app:backgroundTint="#D50000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sav_appoint"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toEndOf="@+id/del_appoint"
-        app:layout_constraintTop_toTopOf="@+id/del_appoint"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/add_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_text"
-        android:text="Add Report"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#D50000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_course"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/add_course"
-        app:layout_constraintTop_toBottomOf="@+id/add_course"
-        app:layout_constraintVertical_bias="0.077" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/border_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_report"
-        app:layout_constraintVertical_bias="0.038"
-        app:tabIconTint="#D50000"
-        app:tabIndicatorColor="#D50000"
-        app:tabRippleColor="#D50000"
-        app:tabTextColor="#D50000">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/courses_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Courses" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/reports_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reports" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/border_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
+        app:layout_constraintEnd_toStartOf="@+id/sav_course"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toEndOf="@+id/del_course"
+        app:layout_constraintTop_toBottomOf="@+id/instructions"
+        app:layout_constraintVertical_bias="0.302" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

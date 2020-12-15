@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +31,7 @@ public class ReportDetail extends AppCompatActivity
     private Report report;
     private DatabaseHandler db;
     private Context context;
-    private Button b1,b2;
+    private Button b1,b2,b3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,6 +85,7 @@ public class ReportDetail extends AppCompatActivity
 
         b1 = findViewById(R.id.sav_repo);
         b2 = findViewById(R.id.del_repo);
+        b3 = findViewById(R.id.view_report);
 
         b1.setOnClickListener(new View.OnClickListener()
         {
@@ -102,13 +104,15 @@ public class ReportDetail extends AppCompatActivity
                 if(report.getReportKey()==-1)
                 {
                     db.insertReport(report);
+                    Toast.makeText(context,"Saved Successfully",Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 }
                 else
                 {
                     db.updateReport(report);
+                    Toast.makeText(context,"Updated Successfully",Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(context,"Saved Successfully",Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -122,6 +126,16 @@ public class ReportDetail extends AppCompatActivity
                     db.deleteReport(report.getReportKey());
                 }
                 onBackPressed();
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(report.getUrl().toString()));
+                context.startActivity(browserIntent);
             }
         });
 

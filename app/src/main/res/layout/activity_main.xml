@@ -15,7 +15,11 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        app:tabIconTint="#D50000"
+        app:tabIndicatorColor="#D50000"
+        app:tabRippleColor="#D50000"
+        app:tabTextColor="#D50000">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/appointments"
@@ -30,7 +34,7 @@
             android:text="Courses" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/reports"
+            android:id="@+id/courses_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reports" />
