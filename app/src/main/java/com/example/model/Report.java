@@ -1,15 +1,21 @@
 package com.example.model;
 
+import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Report
+public class Report implements Serializable
 {
     private int appointmentKey,reportKey;
     private String type,remarks;
     private URL url;
 
-    public Report()
+    public Report() throws MalformedURLException
     {
+        reportKey = appointmentKey = -1;
+        type = "Not Set";
+        remarks = "Not Set";
+        url = new URL("https://64.media.tumblr.com/54bc62d2af0f7cbe1be80937105812d4/tumblr_nnu788Mpdf1rkembbo1_500.png");
     }
 
     public Report(int appointmentKey, int reportKey, String type, String remarks, URL url)

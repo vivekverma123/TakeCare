@@ -255,7 +255,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         values.put("REMARKS",report.getRemarks());
         values.put("URL",report.getUrl().toString());
         values.put("FK_APPOINTMENT_KEY",report.getAppointmentKey());
-        db.update(TABLE_REPORTS,values,"MEDICINE_KEY=?",new String[]{String.valueOf(report.getReportKey())});
+        db.update(TABLE_REPORTS,values,"REPORT_KEY=?",new String[]{String.valueOf(report.getReportKey())});
     }
 
     public ArrayList<Appointment> getAllAppointments() throws MalformedURLException
@@ -279,7 +279,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     {
         ArrayList <Report> arrayList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Repprts", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Reports", null);
         if (cursor.moveToFirst())
         {
             do

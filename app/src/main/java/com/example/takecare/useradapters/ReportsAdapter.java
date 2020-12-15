@@ -19,6 +19,7 @@ import com.example.model.Appointment;
 import com.example.model.Report;
 import com.example.takecare.R;
 import com.example.takecare.activities.AppointmentDetail;
+import com.example.takecare.activities.ReportDetail;
 import com.example.takecare.fragments.reports.Reports;
 
 import java.net.MalformedURLException;
@@ -90,18 +91,18 @@ public class ReportsAdapter extends RecyclerView.Adapter <ReportsAdapter.MyAdapt
         {
             t1.setText("ID: " + report.getReportKey());
             Appointment appointment = db.getAppointment(report.getAppointmentKey());
-            t2.setText("Referred by: " + appointment.getDoctor());
+            t2.setText("Referred by " + appointment.getDoctor());
             t3.setVisibility(View.GONE);
             t4.setVisibility(View.GONE);
-            t5.setText(report.getRemarks());
+            t5.setText("Test: " + report.getType());
 
-            /*b1.setOnClickListener(new View.OnClickListener()
+            b1.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent intent = new Intent(context,AppointmentDetail.class);
-                    intent.putExtra("Object",appointment);
+                    Intent intent = new Intent(context, ReportDetail.class);
+                    intent.putExtra("Object",report);
                     context.startActivity(intent);
                 }
             });
@@ -111,10 +112,10 @@ public class ReportsAdapter extends RecyclerView.Adapter <ReportsAdapter.MyAdapt
                 @Override
                 public void onClick(View v)
                 {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(appointment.getUrl().toString()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(report.getUrl().toString()));
                     context.startActivity(browserIntent);
                 }
-            });*/
+            });
 
         }
     }

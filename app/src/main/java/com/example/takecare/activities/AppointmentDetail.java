@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.database.DatabaseHandler;
 import com.example.model.Appointment;
+import com.example.model.Report;
 import com.example.takecare.R;
 
 import java.net.MalformedURLException;
@@ -122,6 +123,26 @@ public class AppointmentDetail extends AppCompatActivity
                 db.deleteAppointment(appointment.getAppointmentKey());
                 Toast.makeText(context,"Deleted Successfully",Toast.LENGTH_SHORT).show();
                 onBackPressed();
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                try
+                {
+                    Report report = new Report();
+                    report.setAppointmentKey(appointment.getAppointmentKey());
+                    Intent intent = new Intent(context,ReportDetail.class);
+                    intent.putExtra("Object",report);
+                    startActivity(intent);
+
+                } catch (MalformedURLException e)
+                {
+                    e.printStackTrace();
+                }
             }
         });
 
