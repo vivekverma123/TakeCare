@@ -51,7 +51,7 @@ public class Profile extends AppCompatActivity
         init();
     }
 
-    void init()
+    private void init()
     {
         e1 = findViewById(R.id.name);
         e2 = findViewById(R.id.dob);

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.model.Appointment;
 import com.example.model.Course;
@@ -27,10 +29,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_COURSE = "Courses";
     private static final String TABLE_MEDICINES = "Medicines";
     private static final String TABLE_REPORTS = "Reports";
+    private Context context;
 
     public DatabaseHandler(Context context)
     {
         super(context,"TakeCare",null,VERSION);
+        this.context = context;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         String CREATE_PERSON = "CREATE TABLE " + TABLE_PERSON + " ( KEY1 INTEGER PRIMARY KEY, NAME TEXT NOT NULL, DOB TEXT NOT NULL, SEX TEXT NOT NULL, HEIGHT REAL NOT NULL, WEIGHT REAL NOT NULL)";
         String CREATE_APPOINTMENT = "CREATE TABLE " + TABLE_APPOINTMENT + " ( APPOINTMENT_KEY INTEGER PRIMARY KEY AUTOINCREMENT, DOCTOR TEXT NOT NULL, DATE TEXT NOT NULL, TIME TEXT NOT NULL, URL TEXT NOT NULL)";
         String CREATE_COURSE = "CREATE TABLE " + TABLE_COURSE + " ( COURSE_KEY INTEGER PRIMARY KEY AUTOINCREMENT, FROM1 TEXT NOT NULL, TO1 TEXT NOT NULL, INSTRUCTIONS TEXT NOT NULL, FK_APPOINTMENT_KEY INTEGER NOT NULL, FOREIGN KEY (FK_APPOINTMENT_KEY) REFERENCES Appointments(APPOINTMENT_KEY))";
-        String CREATE_MEDICINE = "CREATE TABLE " + TABLE_MEDICINES + " (MEDICINE_KEY INTEGER PRIMARY KEY AUTOINCREMENT, DOSES INTEGER NOT NULL, DOSES_TAKEN INTEGER NOT NULL, NAME TEXT NOT NULL, TIME1 TEXT NOT NULL, TIME2 TEXT NOT NULL, TIME3 TEXT NOT NULL, TIME4 TEXT NOT NULL, TIME5 TEXT NOT NULL, T1 INTEGER NOT NULL, T2 INTEGER NOT NULL, T3 INTEGER NOT NULL, T4 INTEGER NOT NULL, T5 INTEGER NOT NULL, FK_APPOINTMENT_KEY INTEGER NOT NULL, FK_COURSE_KEY INTEGER NOT NULL ,FOREIGN KEY (FK_COURSE_KEY) REFERENCES Courses(FK_COURSE_KEY), FOREIGN KEY (FK_APPOINTMENT_KEY)  REFERENCES Appointments (APPOINTMENT_KEY))";
+        String CREATE_MEDICINE = "CREATE TABLE " + TABLE_MEDICINES + " (MEDICINE_KEY INTEGER PRIMARY KEY AUTOINCREMENT, DOSES INTEGER NOT NULL, NAME TEXT NOT NULL, TIME1 TEXT NOT NULL, TIME2 TEXT NOT NULL, TIME3 TEXT NOT NULL, TIME4 TEXT NOT NULL, TIME5 TEXT NOT NULL, T1 INTEGER NOT NULL, T2 INTEGER NOT NULL, T3 INTEGER NOT NULL, T4 INTEGER NOT NULL, T5 INTEGER NOT NULL, FK_APPOINTMENT_KEY INTEGER NOT NULL, FK_COURSE_KEY INTEGER NOT NULL ,FOREIGN KEY (FK_COURSE_KEY) REFERENCES Courses(FK_COURSE_KEY), FOREIGN KEY (FK_APPOINTMENT_KEY)  REFERENCES Appointments (APPOINTMENT_KEY))";
         String CREATE_REPORT = "CREATE TABLE " + TABLE_REPORTS + " ( REPORT_KEY INTEGER PRIMARY KEY AUTOINCREMENT, TYPE TEXT NOT NULL, REMARKS TEXT NOT NULL, URL TEXT NOT NULL, FK_APPOINTMENT_KEY INTEGER NOT NULL, FOREIGN KEY (FK_APPOINTMENT_KEY) REFERENCES Appointments(APPOINTMENT_KEY))";
 
         db.execSQL(CREATE_PERSON);
@@ -85,6 +89,22 @@ public class DatabaseHandler extends SQLiteOpenHelper
             cursor.moveToFirst();
             Appointment appointment = new Appointment(Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),cursor.getString(3),new URL(cursor.getString(4)));
             return appointment;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public Course getCourse(int id) throws MalformedURLException
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(false,TABLE_COURSE,new String[]{"COURSE_KEY", "FROM1","TO1","INSTRUCTIONS,FK_APPOINTMENT_KEY"},"COURSE_KEY = ?",new String[]{String.valueOf(id)},null,null,null,null,null);
+        if(cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            Course course = new Course(Integer.parseInt(cursor.getString(4)),Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),cursor.getString(3));
+            return course;
         }
         else
         {
@@ -138,7 +158,6 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("DOSES",medicine.getDoses());
-        values.put("DOSES_TAKEN",medicine.getDoses_taken());
         values.put("NAME",medicine.getName());
         values.put("TIME1",medicine.getTime1());
         values.put("TIME2",medicine.getTime2());
@@ -229,7 +248,6 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("DOSES",medicine.getDoses());
-        values.put("DOSES_TAKEN",medicine.getDoses_taken());
         values.put("NAME",medicine.getName());
         values.put("TIME1",medicine.getTime1());
         values.put("TIME2",medicine.getTime2());
@@ -340,6 +358,23 @@ public class DatabaseHandler extends SQLiteOpenHelper
             } while (cursor.moveToNext());
         }
         Collections.reverse(arrayList);
+        return arrayList;
+    }
+
+    public ArrayList <Medicine> getAllMedicines(int id)
+    {
+        ArrayList <Medicine> arrayList = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Medicines",null);
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Medicine medicine = new Medicine(Integer.parseInt(cursor.getString(14)),Integer.parseInt(cursor.getString(0)),Integer.parseInt(cursor.getString(13)),Integer.parseInt(cursor.getString(1)),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),Integer.parseInt(cursor.getString(8)),Integer.parseInt(cursor.getString(9)),Integer.parseInt(cursor.getString(10)),Integer.parseInt(cursor.getString(11)),Integer.parseInt(cursor.getString(12)));
+                arrayList.add(medicine);
+            }while(cursor.moveToNext());
+        }
+        //Toast.makeText(context,arrayList.size(),Toast.LENGTH_SHORT).show();
         return arrayList;
     }
 

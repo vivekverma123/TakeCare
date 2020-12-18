@@ -55,7 +55,7 @@ public class ReportDetail extends AppCompatActivity
         }
     }
 
-    public void init() throws MalformedURLException
+    private void init() throws MalformedURLException
     {
         context = ReportDetail.this;
         db = new DatabaseHandler(context);

@@ -2,14 +2,19 @@ package com.example.takecare.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,6 +33,7 @@ import com.example.model.Appointment;
 import com.example.model.Course;
 import com.example.model.Report;
 import com.example.takecare.R;
+import com.example.takecare.notifications.NotificationPublisher;
 import com.google.android.material.tabs.TabLayout;
 
 import java.net.Inet4Address;
@@ -124,6 +130,7 @@ public class AppointmentDetail extends AppCompatActivity
                 try
                 {
                     Date d1 = formatter.parse(temp);
+                    scheduleNotification(getNotification(appointment),d1,appointment.getAppointmentKey());
                 } catch (ParseException e)
                 {
                     e.printStackTrace();
@@ -137,6 +144,7 @@ public class AppointmentDetail extends AppCompatActivity
                 }
                 db.updateAppointment(appointment);
                 Toast.makeText(context,"Saved Successfully",Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -210,11 +218,16 @@ public class AppointmentDetail extends AppCompatActivity
         TimePickerDialog timePickerDialog = new TimePickerDialog(context,
                 (view, hourOfDay, minute) ->
                 {
-                    String selectedTime = hourOfDay + ":" + minute;
-                    if(minute==0)
+                    String hour = String.valueOf(hourOfDay),minute1 = String.valueOf(minute);
+                    if(hourOfDay/10==0)
                     {
-                        selectedTime = selectedTime + "0";
+                        hour = "0" + hourOfDay;
                     }
+                    if(minute/10==0)
+                    {
+                        minute1 = "0" + minute;
+                    }
+                    String selectedTime = hour + ":" + minute1;
                     ((TextView)v).setText(selectedTime);
 
                 },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),true);
@@ -353,6 +366,30 @@ public class AppointmentDetail extends AppCompatActivity
                 }
             }
         });
+    }
+
+    private void scheduleNotification (Notification notification , Date d1, int id)
+    {
+        Intent notificationIntent = new Intent( context, NotificationPublisher.class ) ;
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID , appointment.getAppointmentKey()) ;
+        notificationIntent.putExtra(NotificationPublisher. NOTIFICATION , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( context, appointment.getAppointmentKey() , notificationIntent , PendingIntent.FLAG_UPDATE_CURRENT) ;
+        Date d2 = new Date();
+        long futureInMillis = SystemClock.elapsedRealtime () + d1.getTime() - d2.getTime();
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+    }
+
+    private Notification getNotification (Appointment appointment)
+    {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( context,"Health") ;
+        builder.setContentTitle("Appointment Alert!!!" ) ;
+        builder.setContentText("Your appointment with " + appointment.getDoctor() + " is scheduled at " + appointment.getTime()) ;
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        //builder.setAutoCancel( true ) ;
+        builder.setChannelId("Health");
+        return builder.build() ;
     }
 
 }

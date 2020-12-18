@@ -1,29 +1,32 @@
 package com.example.model;
 
-public class Medicine
+import java.io.Serializable;
+
+public class Medicine implements Serializable
 {
-    private int appKey,medKey,courseKey,doses,doses_taken;
-    private String Name,time1,time2,time3,time4,time5,instructions;
+    private int appKey,medKey,courseKey,doses;
+    private String Name,time1,time2,time3,time4,time5;
     private int t1,t2,t3,t4,t5;
 
     public Medicine()
     {
+        Name = time1 = time2 = time3 = time4 = time5 = "Not Set";
+        t1 = t2 = t3 = t4 = t5 = 0;
+        appKey = medKey = courseKey = -1;
     }
 
-    public Medicine(int appKey, int medKey, int courseKey, int doses, int doses_taken, String name, String time1, String time2, String time3, String time4, String time5, String instructions, int t1, int t2, int t3, int t4, int t5)
+    public Medicine(int appKey, int medKey, int courseKey, int doses, String name, String time1, String time2, String time3, String time4, String time5, int t1, int t2, int t3, int t4, int t5)
     {
         this.appKey = appKey;
         this.medKey = medKey;
         this.courseKey = courseKey;
         this.doses = doses;
-        this.doses_taken = doses_taken;
         Name = name;
         this.time1 = time1;
         this.time2 = time2;
         this.time3 = time3;
         this.time4 = time4;
         this.time5 = time5;
-        this.instructions = instructions;
         this.t1 = t1;
         this.t2 = t2;
         this.t3 = t3;
@@ -69,16 +72,6 @@ public class Medicine
     public void setDoses(int doses)
     {
         this.doses = doses;
-    }
-
-    public int getDoses_taken()
-    {
-        return doses_taken;
-    }
-
-    public void setDoses_taken(int doses_taken)
-    {
-        this.doses_taken = doses_taken;
     }
 
     public String getName()
@@ -141,16 +134,6 @@ public class Medicine
         this.time5 = time5;
     }
 
-    public String getInstructions()
-    {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions)
-    {
-        this.instructions = instructions;
-    }
-
     public int getT1()
     {
         return t1;
@@ -200,4 +183,10 @@ public class Medicine
     {
         this.t5 = t5;
     }
+
+    public String toString()
+    {
+        return Name;
+    }
+
 }
