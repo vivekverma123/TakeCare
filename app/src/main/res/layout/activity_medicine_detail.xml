@@ -469,5 +469,36 @@
         app:layout_constraintTop_toTopOf="@+id/del_med"
         app:layout_constraintVertical_bias="0.0" />
 
+    <EditText
+        android:id="@+id/notif_doses"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:hint="number of doses from now"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/del_med"
+        app:layout_constraintVertical_bias="0.222" />
+
+    <CheckBox
+        android:id="@+id/create_notif"
+        android:layout_width="140dp"
+        android:layout_height="53dp"
+        android:background="@drawable/border_text"
+        android:gravity="center|left"
+        android:padding="5dp"
+        android:text="Create Notifications"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/notif_doses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/notif_doses"
+        app:layout_constraintTop_toTopOf="@+id/notif_doses" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -130,7 +130,7 @@ public class AppointmentDetail extends AppCompatActivity
                 try
                 {
                     Date d1 = formatter.parse(temp);
-                    scheduleNotification(getNotification(appointment),d1,appointment.getAppointmentKey());
+                    scheduleNotification(getNotification(appointment),d1,Integer.parseInt(String.valueOf("1" + appointment.getAppointmentKey())));
                 } catch (ParseException e)
                 {
                     e.printStackTrace();
@@ -371,9 +371,9 @@ public class AppointmentDetail extends AppCompatActivity
     private void scheduleNotification (Notification notification , Date d1, int id)
     {
         Intent notificationIntent = new Intent( context, NotificationPublisher.class ) ;
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID , appointment.getAppointmentKey()) ;
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID , id) ;
         notificationIntent.putExtra(NotificationPublisher. NOTIFICATION , notification) ;
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( context, appointment.getAppointmentKey() , notificationIntent , PendingIntent.FLAG_UPDATE_CURRENT) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( context, id, notificationIntent , PendingIntent.FLAG_UPDATE_CURRENT) ;
         Date d2 = new Date();
         long futureInMillis = SystemClock.elapsedRealtime () + d1.getTime() - d2.getTime();
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
@@ -389,6 +389,7 @@ public class AppointmentDetail extends AppCompatActivity
         builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
         //builder.setAutoCancel( true ) ;
         builder.setChannelId("Health");
+        builder.setGroup("Appointment Notifications");
         return builder.build() ;
     }
 
